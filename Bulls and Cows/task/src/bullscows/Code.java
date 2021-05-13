@@ -64,7 +64,7 @@ class Code {
             System.out.println("Grade: None.");
         } else if (bulls != 0 && cows == 0) {
             System.out.printf("Grade: %d bull(s).\n", bulls);
-        } else if (bulls == 0 && cows != 0) {
+        } else if (bulls == 0) {
             System.out.printf("Grade: %d cows(s).\n", cows);
         } else {
             System.out.printf("Grade: %d bull(s) and %d cows(s).\n", bulls, cows);
@@ -73,42 +73,35 @@ class Code {
 
     StringBuilder createNumber(int len) {
         StringBuilder builder = new StringBuilder();
-        if (len <= 36 && len > 0) {
-            Random random = new Random();
+        Random random = new Random();
 
-            int intBound;
-            if (nSymbols >= 10) {
-                intBound = 9;
-            } else intBound = nSymbols - 1;
+        int intBound;
+        if (nSymbols >= 10) {
+            intBound = 9;
+        } else intBound = nSymbols - 1;
 
-            numsAndChars = new StringBuilder();
-            StringBuilder numArray = new StringBuilder();
-            for (int i = 0; i < intBound + 1; i++) {
-                numArray.append(i);
-                numsAndChars.append(i);
-            }
-            for (char ch = 'a'; ch < 'a' + nSymbols - 10; ch++) {
-                numArray.append(ch);
-                numsAndChars.append(ch);
-            }
-
-            int step = 0;
-            do {
-                int nextIdx = random.nextInt(nSymbols - step);
-                char ch = numArray.charAt(nextIdx);
-
-                numArray.deleteCharAt(nextIdx);
-                builder.append(ch);
-                step++;
-
-            } while (builder.length() < len);
-
-        } else {
-            System.out.printf(
-                    "Error: can't generate a secret number with a" +
-                            " length of %d because there aren't enough unique digits.", len);
-            System.exit(1);
+        numsAndChars = new StringBuilder();
+        StringBuilder numArray = new StringBuilder();
+        for (int i = 0; i < intBound + 1; i++) {
+            numArray.append(i);
+            numsAndChars.append(i);
         }
+        for (char ch = 'a'; ch < 'a' + nSymbols - 10; ch++) {
+            numArray.append(ch);
+            numsAndChars.append(ch);
+        }
+
+        int step = 0;
+        do {
+            int nextIdx = random.nextInt(nSymbols - step);
+            char ch = numArray.charAt(nextIdx);
+
+            numArray.deleteCharAt(nextIdx);
+            builder.append(ch);
+            step++;
+
+        } while (builder.length() < len);
+
         System.out.print("The secret is prepared: ");
         System.out.print("*".repeat(len));
         int lastDigit = nSymbols < 10 ? nSymbols - 1 : 9;
