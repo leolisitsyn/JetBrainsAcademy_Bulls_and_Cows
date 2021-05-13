@@ -15,15 +15,21 @@ class Code {
     Code(int len, int symbols) {
         this.len = len;
         this.nSymbols = symbols;
-        code = createNumber(len);
+        code = createNumber();
         sc = new Scanner(System.in);
     }
 
 
+    /**
+     Method checks whether current code guess is correct or not.
+     */
     boolean win() {
         return guess.toString().equals(code.toString());
     }
 
+    /**
+     Method reads user's input code and tests it.
+     */
     void step() {
         System.out.printf("Turn %d:\n", steps);
         steps++;
@@ -31,6 +37,11 @@ class Code {
         grader();
     }
 
+
+    /**
+     Method counts amount of bulls and cows for generated code
+     and uset's guess code.
+     */
     void grader() {
 
         int bulls = 0;
@@ -71,7 +82,12 @@ class Code {
         }
     }
 
-    StringBuilder createNumber(int len) {
+
+    /**
+     Method creates random number with "len" symbols and
+     "nSymbols" different symbols from 0 to 9 and then from a to z.
+     */
+    StringBuilder createNumber() {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();
 

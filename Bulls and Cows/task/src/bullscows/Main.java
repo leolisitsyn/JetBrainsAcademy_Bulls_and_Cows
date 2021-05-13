@@ -10,6 +10,7 @@ public class Main {
 
         System.out.println("Please, enter the secret code's length:");
 
+        // length of code to guess
         int len = 0;
         try {
             len = Integer.parseInt(sc.nextLine());
@@ -22,6 +23,8 @@ public class Main {
             System.exit(1);
         }
         System.out.println("Input the number of possible symbols in the code:");
+
+        // amount of symbols to choose from 0-9 + a-z
         int symbols = 0;
         try {
             symbols = Integer.parseInt(sc.nextLine());
@@ -33,6 +36,7 @@ public class Main {
             System.out.println("Error");
             System.exit(1);
         }
+
         Code code = new Code(len, symbols);
 
         System.out.println("Okay, let's start a game!");
